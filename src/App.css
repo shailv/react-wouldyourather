@@ -1,16 +1,29 @@
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+html, body, .root {
+  height: 100%;
+}
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Helvetica,Arial,sans-serif;
+  line-height: 1.5;
+}
+a{color:#409538;text-decoration: underline;font-size: 14px;font-weight: bold;}
+input{
+  font-size: 14px;
+}
 .App {
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
-}
-
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  background-color: #ccc;
+  min-height: 10vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -22,12 +35,90 @@
 .App-link {
   color: #61dafb;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+button {
+  margin-top: 20px;
+  background: #409538;
+  padding: 10px;
+  text-transform: uppercase;
+  font-size: inherit;
+  border: none;
+  outline: 0;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+}
+select{
+  height:30px;
+  font-size:16px;
+}
+ul.questions{
+  width: 400px;
+  margin: 0 auto;
+  text-align: left;
+  padding: 0;
+}
+ul.questions > li,ul.score > li{
+  list-style:none;
+}
+.questions img, .user-score img{
+  width:40px;
+  display: inline;
+}
+.questions h3, .user-score h3{
+  display: inline;
+  vertical-align: top;
+  line-height: 35px;
+}
+.questions h4, .user-score h4{
+  margin:5px 0;
+}
+ul.score{
+  width: 750px;
+  margin: 0 auto;
+  text-align: left;
+  padding: 0;
+}
+.user-score{
+  padding:10px;
+  border:1px solid #ccc;
+  display: inline-block;
+  vertical-align: top;
+  height:130px;
+  width:250px;
+}
+.home-columns{
+  border: 1px solid #ccc;
+  margin-left: 20px;
+  width: 500px;
+  display: inline-block;
+  vertical-align: top;
+}
+.home-outer{
+  margin:30px auto;
+}
+.view-poll{
+  width: 600px;
+  margin: 0 auto;
+}
+.view-poll img{
+  width: 30px;
+  display: inline;
+}
+.view-poll h3{
+  display: inline;
+  vertical-align: top;
+}
+.votes-outer{
+  border: 1px solid #999;
+  width: 500px;
+  text-align: left;
+  padding: 20px;
+}
+.progress-bar-outer{
+  border:1px solid #999;
+  width:400px;
+}
+.progress-bar{
+  background-color:#409538;
+  border:1px solid #999;
 }
