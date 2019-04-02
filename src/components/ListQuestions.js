@@ -19,19 +19,13 @@ class ListQuestions extends Component{
                                     <h3>{u.name}</h3>
                                 </div>
                             )}
+                            <div>
                             <h4>Would you rather...</h4>
                             {q.optionOne.text}<br/>
                             <strong>OR</strong><br/>
-                            {q.optionTwo.text}<br/>
-                           
-                            <Link to={`/questions/${q.id}`}>View Poll</Link>
-
-                            {/* <Route path={`/questions/:${q.id}`}>
-                                <Question question_id={q.id}/>
-                            </Route> */}
-                            
-                            {/* <button onClick={() => {this.props.history.push(`/questions/:${q.id}`)}}>View Poll</button> */}
-                            
+                            {q.optionTwo.text}
+                            </div>
+                            <Link className="poll-button" to={`/questions/${q.id}`}>View Poll</Link>
                             <hr/>
                         </li>
                     )}

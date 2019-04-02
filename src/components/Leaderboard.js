@@ -15,7 +15,6 @@ class Leaderboard extends Component{
                             <img src={avatar} alt={user.name} />
                             <h3>{user.name}</h3>
                         </div>
-                        {console.log()}
                         <div className="user-score" >
                             <h4>Answered Questions: {user.questions.length}</h4>
                             <h4>Created Questions:  {Object.keys(user.answers).length}</h4>

@@ -6,10 +6,6 @@ import serializeForm from 'form-serialize';
 import { saveQuestionAnswer } from '../actions/questions';
 
 class ViewPoll extends Component{
-    // constructor(props){
-    //     super(props);
-    //     //this.answerPoll = this.answerPoll.bind(this);
-    // }
     answerPoll = (thisQuestion, e) => {
         e.preventDefault();
 
@@ -24,17 +20,15 @@ class ViewPoll extends Component{
              //redirect to homepage
              this.props.history.push('/');
          } ));
-        //(user,questionID,answer, callback)
     }
     render(){
-        console.log(this.props)
         var question_id = "";
         if(this.props.match !== null){
             question_id = (this.props.match.params.question_id).toString().replace(":","");
         }
         const thisQuestion = this.props.questions.filter(q => q.id === question_id)[0];
         const loggedUser = this.props.loggedInUser;
-        console.log(thisQuestion)
+
         const optionOneLength = thisQuestion.optionOne.votes.length;
         const optionTwoLength = thisQuestion.optionTwo.votes.length;
         const optionOnePercent = optionOneLength/(this.props.users.length) * 100;
@@ -44,7 +38,7 @@ class ViewPoll extends Component{
             <div className="home-outer">
                 {(thisQuestion !== undefined) && this.props.users.filter(u => u.id === thisQuestion.author).map(u => 
                 <div className="view-poll" key={u.id}>
-                    <div>
+                    <div className="poll-user">
                         <img src={avatar} alt={u.name} /><h3>{u.name}  asked: </h3>
                     </div>
                    
@@ -69,12 +63,12 @@ class ViewPoll extends Component{
                         </div>
                     </div>
                     :
-                    <div>
+                    <div className="padding10">
                         {/* User has not answered this question */}
                         <form onSubmit={(e) => this.answerPoll(thisQuestion,e)}>
-                            <input type="radio" value="optionOne" name="answer"/>{thisQuestion.optionOne.text}<br/>
+                            <input type="radio" value="optionOne" name="answer"/> {thisQuestion.optionOne.text}<br/>
                             <strong>OR</strong><br/>
-                            <input type="radio" value="optionTwo" name="answer"/>{thisQuestion.optionTwo.text}<br/>
+                            <input type="radio" value="optionTwo" name="answer"/> {thisQuestion.optionTwo.text}<br/>
                             <button type="submit">
                                 Submit
                             </button>

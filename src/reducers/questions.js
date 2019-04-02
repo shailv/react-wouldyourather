@@ -13,9 +13,6 @@ export default function questions(state=[],action){
             const newQuestion = action.question;
             return state.concat(newQuestion);
         case SAVE_QUESTION_ANSWER: 
-            console.log(action);
-            console.log(state);
-            //const question = state.filter(q => q.id === action.qid);
             const index = state.findIndex(q=> q.id == action.qid);
             const question = state[index];
 
@@ -26,7 +23,6 @@ export default function questions(state=[],action){
                 question.optionTwo.votes.push(action.user);
             }
             state[index] = question;
-            console.log(state);
             return state;//.concat([action.questions]);
         default:
             return state;

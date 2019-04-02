@@ -13,7 +13,7 @@ body {
   font-family: Helvetica,Arial,sans-serif;
   line-height: 1.5;
 }
-a{color:#409538;text-decoration: underline;font-size: 14px;font-weight: bold;}
+a{color:#fff;text-decoration: none;font-size: 14px;font-weight: bold;}
 input{
   font-size: 14px;
 }
@@ -25,18 +25,41 @@ input{
   background-color: #ccc;
   min-height: 10vh;
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  font-size: calc(10px + 2vmin); */
+  color: #409538;
 }
-
+.App-header a:after{
+  content: " | ";
+}
+.App-header a.last:after{
+  content:"";
+}
+.App-header h2{
+  margin: 20px auto;
+}
+.menu{
+  text-align: center;
+  width: 100%;
+  padding: 10px 0;
+  margin-left: 250px;
+}
+.menu-right{
+  text-align: center;
+  width: 400px;
+  margin-left: auto;
+  padding: 10px 0;
+}
+.menu a{
+  font-size: 16px;
+}
 .App-link {
   color: #61dafb;
 }
-button {
-  margin-top: 20px;
+button, .poll-button{
+  margin: 20px 0;
   background: #409538;
   padding: 10px;
   text-transform: uppercase;
@@ -46,6 +69,12 @@ button {
   border-radius: 5px;
   font-size: 16px;
   font-weight: bold;
+  color: #fff;
+  text-decoration: none;
+  display: block;
+}
+.poll-button{
+  display: inline-block;
 }
 select{
   height:30px;
@@ -96,9 +125,20 @@ ul.score{
 .home-outer{
   margin:30px auto;
 }
-.view-poll{
-  width: 600px;
+.login-outer{
+  border: 1px solid #ccc;
+  width: 400px;
   margin: 0 auto;
+  height: 200px;
+}
+.login-outer button{
+  display: inline-block;
+}
+.view-poll{
+  width: 400px;
+  margin: 0 auto;
+  text-align: left;
+  border:1px solid #ccc;
 }
 .view-poll img{
   width: 30px;
@@ -108,17 +148,27 @@ ul.score{
   display: inline;
   vertical-align: top;
 }
+.padding10{
+  padding:10px;
+}
+.poll-user{
+  border-bottom:1px solid #ccc;
+  background-color: #ccc;
+}
 .votes-outer{
   border: 1px solid #999;
-  width: 500px;
+  width: 400px;
   text-align: left;
   padding: 20px;
 }
 .progress-bar-outer{
   border:1px solid #999;
-  width:400px;
+  width:300px;
 }
 .progress-bar{
   background-color:#409538;
   border:1px solid #999;
+}
+.border-top{
+  border-top: 1px solid #999;
 }

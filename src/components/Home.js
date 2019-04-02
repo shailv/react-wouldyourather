@@ -5,6 +5,7 @@ import ListQuestions from './ListQuestions';
 class Home extends Component {
 
     render() {
+        console.log(this.props.questions);
         const loggedInUser = this.props.loggedInUser;
         var answeredArray = {};
         var unansweredArray = {};
@@ -17,11 +18,11 @@ class Home extends Component {
         return (
             <div className="home-outer">
                 <div className="home-columns">
-                    <h3>Answered Questions:</h3>
+                    <h3>Answered Questions</h3>
                     <ListQuestions questionsArray={answeredArray} users={this.users} />
                 </div>
                 <div className="home-columns">
-                    <h3>Unanswered Questions:</h3>
+                    <h3>Unanswered Questions</h3>
                     <ListQuestions questionsArray={unansweredArray} users={this.users} />
                 </div>
             </div>
