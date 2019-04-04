@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import {Route, Link, withRouter} from 'react-router-dom';
+import {Route, Link, withRouter, Switch} from 'react-router-dom';
 import {connect} from 'react-redux';
 
 import { handleInitialData } from '../actions/shared';
-import {addLoggedinUser} from '../actions/loggedUser';
+import {addLoggedinUser, userLogout} from '../actions/loggedUser';
 import {saveQuestion} from '../actions/questions';
 
 import UserSelection from './UserSelection';
@@ -11,6 +11,7 @@ import Home from './Home';
 import Leaderboard from './Leaderboard';
 import CreateQuestion from './CreateQuestion';
 import Question from './Question';
+import PageNotFound from './PageNotFound'
 import '../App.css';
 
 class App extends Component {
@@ -40,7 +41,14 @@ class App extends Component {
     }));
     
   }
-
+  logout = (e) =>{
+    e.preventDefault()
+    this.props.dispatch(
+      userLogout(this.props.loggedInUser, () => {
+        this.props.history.push('/')
+      }
+    ))
+  }
   render() {
     return (
       <div className="App">
@@ -49,8 +57,7 @@ class App extends Component {
         </header>
         <div className="border-top">
         {
-          
-          (this.props.loggedInUser.length === 0) ?  
+          (Object.keys(this.props.loggedInUser).length === 0) ?  
           (
             <div className="login-outer">
               <h3>LOGIN</h3>
@@ -62,25 +69,29 @@ class App extends Component {
                 <div className="menu">
                   <Link to='/'>HOME</Link>&nbsp;
                   <Link to='/leaderboard'>LEADERBOARD</Link>&nbsp;
-                  <Link to='/ask' className="last">ASK A QUESTION</Link>&nbsp;
+                  <Link to='/add' className="last">ASK A QUESTION</Link>&nbsp;
                 </div>
                 <div className="menu-right">
-                  Welcome {this.props.loggedInUser.name}
+                  Welcome {this.props.loggedInUser.name} 
+                  <Link to='/logout' onClick={this.logout}>Logout</Link>
                 </div>
             </header>
             
-            <Route exact path="/" render={() => (
-              <Home users={this.props.users} questions={this.props.questions} loggedInUser={this.props.loggedInUser}/>
-            )}/>
-            
-            <Route path="/leaderboard" render={() =>(
-              <Leaderboard users={this.props.users}/>
-            )}/>
-            <Route path="/ask" render={( {history} ) =>(
-              <CreateQuestion addQuestion={this.addQuestion}/>
+            <Switch>
+              <Route exact path="/" render={() => (
+                <Home users={this.props.users} questions={this.props.questions} loggedInUser={this.props.loggedInUser}/>
+              )}/>
               
-            )}/>
-            <Route path={`/questions/:question_id`} component={Question} /> 
+              <Route path="/leaderboard" render={() =>(
+                <Leaderboard users={this.props.users}/>
+              )}/>
+              <Route path="/add" render={( {history} ) =>(
+                <CreateQuestion addQuestion={this.addQuestion}/>
+                
+              )}/>
+              <Route path={`/questions/:question_id`} component={Question} /> 
+              <Route component={PageNotFound} />
+            </Switch>
           </div>)
           }
 </div>

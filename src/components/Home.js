@@ -5,11 +5,10 @@ import ListQuestions from './ListQuestions';
 class Home extends Component {
 
     render() {
-        console.log(this.props.questions);
         const loggedInUser = this.props.loggedInUser;
         var answeredArray = {};
         var unansweredArray = {};
-        if (loggedInUser!== null) {
+        if (loggedInUser.answers !== undefined) {
             const answers = Object.keys(loggedInUser.answers);
             answeredArray = (this.props.questions.filter(q => answers.includes(q.id)));
             unansweredArray = this.props.questions.filter(q => !answers.includes(q.id));

@@ -7,9 +7,9 @@ class ListQuestions extends Component{
     render(){
         const questionsArray = this.props.questionsArray;
         const usersArray = this.props.users;
-
         return(
             <div className="home-outer">
+            { (questionsArray !== null) && (questionsArray.length > 0) && 
                 <ul className="questions">
                     {questionsArray.map(q => 
                         <li key={q.id}>
@@ -29,7 +29,7 @@ class ListQuestions extends Component{
                             <hr/>
                         </li>
                     )}
-                </ul>
+                </ul>}
             </div>
         )
     }

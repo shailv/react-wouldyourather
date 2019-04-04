@@ -128,13 +128,13 @@ ul.score{
 .login-outer{
   border: 1px solid #ccc;
   width: 400px;
-  margin: 0 auto;
+  margin: 20px auto;
   height: 200px;
 }
 .login-outer button{
   display: inline-block;
 }
-.view-poll{
+.view-poll, .add-question{
   width: 400px;
   margin: 0 auto;
   text-align: left;
@@ -147,6 +147,12 @@ ul.score{
 .view-poll h3{
   display: inline;
   vertical-align: top;
+}
+.add-question{
+  text-align:center;
+}
+.add-question button{
+  display: inline-block;
 }
 .padding10{
   padding:10px;

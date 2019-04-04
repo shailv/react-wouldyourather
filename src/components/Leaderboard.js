@@ -5,7 +5,6 @@ import avatar from '../icons/person.svg';
 class Leaderboard extends Component{
     render(){
         const users = this.props.users;
-
         return(
             <div className="home-outer">
                 <ul className="score">

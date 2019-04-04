@@ -31,8 +31,8 @@ class ViewPoll extends Component{
 
         const optionOneLength = thisQuestion.optionOne.votes.length;
         const optionTwoLength = thisQuestion.optionTwo.votes.length;
-        const optionOnePercent = optionOneLength/(this.props.users.length) * 100;
-        const optionTwoPercent = optionTwoLength/(this.props.users.length) * 100;
+        const optionOnePercent = (optionOneLength/(this.props.users.length) * 100).toFixed(2);
+        const optionTwoPercent = (optionTwoLength/(this.props.users.length) * 100).toFixed(2);
 
         return(
             <div className="home-outer">
@@ -50,14 +50,14 @@ class ViewPoll extends Component{
                         <div>
                             <strong>{thisQuestion.optionOne.text}</strong>
                             <div className="progress-bar-outer">
-                                <div className="progress-bar" style={{width: optionOnePercent + '%'}}>&nbsp;</div>
+                                <div className="progress-bar" style={{width: optionOnePercent + '%'}}>{optionOnePercent} %</div>
                             </div>
                             <strong>{thisQuestion.optionOne.votes.length} / {this.props.users.length} votes</strong>
                         </div>
                         <div>
                             <strong>{thisQuestion.optionTwo.text}</strong>
                             <div className="progress-bar-outer">
-                                <div className="progress-bar" style={{width: optionTwoPercent + '%'}}>&nbsp;</div>
+                                <div className="progress-bar" style={{width: optionTwoPercent + '%'}}>{optionTwoPercent} %</div>
                             </div>
                             <strong>{thisQuestion.optionTwo.votes.length} / {this.props.users.length} votes</strong>
                         </div>

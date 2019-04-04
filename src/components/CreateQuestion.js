@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import serializeForm from 'form-serialize';
-//import { connect } from 'react-redux';
 
 class CreateQuestion extends Component{
     constructor(props){
@@ -24,7 +23,8 @@ class CreateQuestion extends Component{
     }
     render(){
         return(
-            <div>
+            <div className="home-outer">
+                <div className="add-question">
                 <form onSubmit={this.addQuestion}>
                     <h4>Would you rather..</h4>
                     <strong>
@@ -36,13 +36,9 @@ class CreateQuestion extends Component{
                     <button type="submit" >Submit</button>
 
                 </form>
+                </div>
             </div>
         )
     }
 }
 export default CreateQuestion;
-
-// export default connect = (state) =>({
-//     question:state.question
-// })(CreateQuestion);
-
