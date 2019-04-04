@@ -1,6 +1,14 @@
 import React, {Component} from 'react';
 
+/**
+ * @description Displays user dropdown for login page
+ */
 class UserSelection extends Component{
+
+    /**
+     * @description Send user selection to parent component 
+     * @param {Object} e
+     */
     login = (e) => {
         e.preventDefault();
         this.props.setLoggedInUser(this.select.value);

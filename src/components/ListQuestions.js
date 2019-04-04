@@ -3,10 +3,16 @@ import {withRouter,Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import avatar from '../icons/person.svg';
 
+/**
+ * @description Display questions asked by each user and link to the poll details page
+ */
 class ListQuestions extends Component{
     render(){
         const questionsArray = this.props.questionsArray;
         const usersArray = this.props.users;
+        //sort questions by timestamp
+        questionsArray.sort(function(a,b){ return new Date(b.timestamp) - new Date(a.timestamp) });
+
         return(
             <div className="home-outer">
             { (questionsArray !== null) && (questionsArray.length > 0) && 

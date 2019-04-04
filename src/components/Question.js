@@ -5,7 +5,18 @@ import avatar from '../icons/person.svg';
 import serializeForm from 'form-serialize';
 import { saveQuestionAnswer } from '../actions/questions';
 
+/**
+ * @description Question/poll details page
+ * - displays results if user has answered the question 
+ * - displays a form if user has not answered the question
+ */
 class ViewPoll extends Component{
+
+    /**
+     * @description Collect user's form subsmission and dispatch saveQuestionAnswer
+     * @param {Object} thisQuestion Question being answered
+     * @param {Object} e Event object with form values
+     */
     answerPoll = (thisQuestion, e) => {
         e.preventDefault();
 
@@ -29,6 +40,7 @@ class ViewPoll extends Component{
         const thisQuestion = this.props.questions.filter(q => q.id === question_id)[0];
         const loggedUser = this.props.loggedInUser;
 
+        //Get answer option details for displaying on poll results page
         const optionOneLength = thisQuestion.optionOne.votes.length;
         const optionTwoLength = thisQuestion.optionTwo.votes.length;
         const optionOnePercent = (optionOneLength/(this.props.users.length) * 100).toFixed(2);

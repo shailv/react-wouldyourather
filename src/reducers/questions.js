@@ -1,30 +1,28 @@
-import {
-    SAVE_QUESTION,
-    SAVE_QUESTION_ANSWER
-} from '../actions/questions'
-import { RECEIVE_DATA } from '../actions/shared'
+import { SAVE_QUESTION, SAVE_QUESTION_ANSWER } from "../actions/questions";
+import { RECEIVE_DATA } from "../actions/shared";
 
+/**
+ * @description Reducer to manage questions data
+ */
 export default function questions(state = [], action) {
+  switch (action.type) {
+    case RECEIVE_DATA:
+        return action.questions;
+    case SAVE_QUESTION:
+        const newQuestion = action.question;
+        return state.concat(newQuestion);
+    case SAVE_QUESTION_ANSWER:
+        const index = state.findIndex(q => q.id == action.qid);
+        const question = state[index];
 
-    switch (action.type) {
-        case RECEIVE_DATA:
-            return action.questions;
-        case SAVE_QUESTION:
-            const newQuestion = action.question;
-            return state.concat(newQuestion);
-        case SAVE_QUESTION_ANSWER:
-            const index = state.findIndex(q => q.id == action.qid);
-            const question = state[index];
-
-            if (action.answer === "optionOne") {
-                question.optionOne.votes.push(action.user);
-            }
-            else {
-                question.optionTwo.votes.push(action.user);
-            }
-            state[index] = question;
-            return state;
-        default:
-            return state;
-    }
+        if (action.answer === "optionOne") {
+            question.optionOne.votes.push(action.user);
+        } else {
+            question.optionTwo.votes.push(action.user);
+        }
+        state[index] = question;
+        return state;
+    default:
+        return state;
+  }
 }

@@ -2,6 +2,13 @@ import {_getUsers, _getQuestions} from '../_DATA';
 
 export const RECEIVE_DATA = "RECEIVE_DATA"
 
+/**
+ * @description Shared actions
+ */
+
+/**
+ * @description Call APIs to initialize users and questions
+ */
 export function handleInitialData(){
     return (dispatch) => {   
         return Promise.all([

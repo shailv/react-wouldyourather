@@ -2,12 +2,17 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ListQuestions from './ListQuestions';
 
+/**
+ * @description Display answered and unanswered questions
+ */
 class Home extends Component {
 
     render() {
         const loggedInUser = this.props.loggedInUser;
         var answeredArray = {};
         var unansweredArray = {};
+        
+        //filter answered and unanswered questions
         if (loggedInUser.answers !== undefined) {
             const answers = Object.keys(loggedInUser.answers);
             answeredArray = (this.props.questions.filter(q => answers.includes(q.id)));
