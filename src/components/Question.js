@@ -27,10 +27,7 @@ class ViewPoll extends Component{
             qid: thisQuestion.id, 
             answer: formValues.answer
         }
-        this.props.dispatch(saveQuestionAnswer(savedAnswer, ()=>{
-             //redirect to homepage
-             this.props.history.push('/');
-         } ));
+        this.props.dispatch(saveQuestionAnswer(savedAnswer));
     }
     render(){
         var question_id = "";
@@ -40,12 +37,22 @@ class ViewPoll extends Component{
         const thisQuestion = this.props.questions.filter(q => q.id === question_id)[0];
         const loggedUser = this.props.loggedInUser;
 
-        //Get answer option details for displaying on poll results page
-        const optionOneLength = thisQuestion.optionOne.votes.length;
-        const optionTwoLength = thisQuestion.optionTwo.votes.length;
-        const optionOnePercent = (optionOneLength/(this.props.users.length) * 100).toFixed(2);
-        const optionTwoPercent = (optionTwoLength/(this.props.users.length) * 100).toFixed(2);
+        var optionOnePercent = 0.0;
+        var optionTwoPercent = 0.0;
+        var answersTotal = 0;
 
+        if(!thisQuestion){
+            this.props.history.push('/pagenotfound');
+        }
+        else{
+            //Get answer option details for displaying on poll results page
+            const optionOneLength = thisQuestion.optionOne.votes.length;
+            const optionTwoLength = thisQuestion.optionTwo.votes.length;
+
+            answersTotal = optionOneLength + optionTwoLength;
+            optionOnePercent = ((optionOneLength/answersTotal) * 100).toFixed(2);
+            optionTwoPercent = ((optionTwoLength/answersTotal) * 100).toFixed(2);
+        }
         return(
             <div className="home-outer">
                 {(thisQuestion !== undefined) && this.props.users.filter(u => u.id === thisQuestion.author).map(u => 
@@ -64,14 +71,14 @@ class ViewPoll extends Component{
                             <div className="progress-bar-outer">
                                 <div className="progress-bar" style={{width: optionOnePercent + '%'}}>{optionOnePercent} %</div>
                             </div>
-                            <strong>{thisQuestion.optionOne.votes.length} / {this.props.users.length} votes</strong>
+                            <strong>{thisQuestion.optionOne.votes.length} / {answersTotal} votes</strong>
                         </div>
                         <div>
                             <strong>{thisQuestion.optionTwo.text}</strong>
                             <div className="progress-bar-outer">
                                 <div className="progress-bar" style={{width: optionTwoPercent + '%'}}>{optionTwoPercent} %</div>
                             </div>
-                            <strong>{thisQuestion.optionTwo.votes.length} / {this.props.users.length} votes</strong>
+                            <strong>{thisQuestion.optionTwo.votes.length} / {answersTotal} votes</strong>
                         </div>
                     </div>
                     :

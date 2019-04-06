@@ -33,11 +33,10 @@ function addQuestion(question) {
  * @param {Object} savedAnswer Object with user, answer and question id
  * @param {Object} callback function to invoke after answer is added
  */
-export function saveQuestionAnswer(savedAnswer, callback) {
+export function saveQuestionAnswer(savedAnswer) {
     return (dispatch) => {
         return _saveQuestionAnswer(savedAnswer).then(() => {
             dispatch(addQuestionAnswer(savedAnswer));
-            callback();
         });
     }
 }

@@ -8,6 +8,9 @@ class CreateQuestion extends Component{
     constructor(props){
         super(props);
         this.addQuestion = this.addQuestion.bind(this);
+        this.state={
+            validateOptions: true
+        }
     }
     
     /**
@@ -17,7 +20,10 @@ class CreateQuestion extends Component{
     addQuestion(e){
         e.preventDefault();
         const formValues = serializeForm(e.target,{hash:true});
-        
+        if(!formValues.option1 || !formValues.option2){
+            this.setState(()=>({validateOptions: false}));
+            return false;
+        }
         this.props.addQuestion(formValues);
     }
     render(){
@@ -31,6 +37,7 @@ class CreateQuestion extends Component{
                         OR<br/>
                         Option 2 - <input type="text" name="option2" placeholder="Option 2"/>
                     </strong><br/> 
+                    {!this.state.validateOptions && <div>*Please enter values in both options</div>}
                     <button type="submit" >Submit</button>
 
                 </form>
