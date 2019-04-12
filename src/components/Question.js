@@ -67,14 +67,15 @@ class ViewPoll extends Component{
                     <div className="votes-outer">
                         <h3>Would you rather...</h3>
                         <div>
-                            <strong>{thisQuestion.optionOne.text}</strong>
+                            <strong>{thisQuestion.optionOne.text}</strong>  <div className="user-answer">{(loggedUser.answers[question_id] === "optionOne") ? "Your vote" : ""}</div>
                             <div className="progress-bar-outer">
                                 <div className="progress-bar" style={{width: optionOnePercent + '%'}}>{optionOnePercent} %</div>
                             </div>
                             <strong>{thisQuestion.optionOne.votes.length} / {answersTotal} votes</strong>
+                            
                         </div>
                         <div>
-                            <strong>{thisQuestion.optionTwo.text}</strong>
+                            <strong>{thisQuestion.optionTwo.text}</strong>  <div className="user-answer">{(loggedUser.answers[question_id] === "optionTwo") ? "Your vote" : ""}</div>
                             <div className="progress-bar-outer">
                                 <div className="progress-bar" style={{width: optionTwoPercent + '%'}}>{optionTwoPercent} %</div>
                             </div>

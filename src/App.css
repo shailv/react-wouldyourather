@@ -180,3 +180,9 @@ ul.score{
 .border-top{
   border-top: 1px solid #999;
 }
+.user-answer{
+  color: #409538;
+  font-weight:bold;
+  float:right;
+
+}
